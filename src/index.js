@@ -39,6 +39,7 @@ const authors = [
 
 
 function getTurnData(authors) {
+  debugger;
   const allBooks = authors.reduce(function (p, c, i) {
     return p.concat(c.books);
   }, []);
@@ -66,6 +67,7 @@ function onAnswerSelected(answer) {
 }
 
 function resetState() {
+  debugger;
   return {
     turnData: getTurnData(authors),
     highlight: "",
@@ -75,6 +77,7 @@ function resetState() {
 }
 
 function TopApp() {
+  debugger;
   return (
     <Author {...state} onAnswerSelected={onAnswerSelected} onContinue={() => {
       state = resetState();
@@ -89,6 +92,7 @@ function TopApp() {
 
 
 const AuthorWrapper = withRouter(({ history }) => {
+  debugger;
   return (
     <AddAuthorForm onAddAuthor={(author) => { authors.push(author); history.push('/') }} />
 
@@ -97,6 +101,7 @@ const AuthorWrapper = withRouter(({ history }) => {
 
 
 function render() {
+  debugger;
   ReactDOM.render(
     <BrowserRouter>
       <React.Fragment>

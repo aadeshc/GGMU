@@ -21,6 +21,7 @@ const Book = ({ title, onClick }) => {
 
 }
 const Turn = ({ author, books, highlight, onAnswerSelected }) => {
+    debugger;
     function highlightToBgColor(highlight) {
         const mapping = {
             none: "",
@@ -45,6 +46,7 @@ const Turn = ({ author, books, highlight, onAnswerSelected }) => {
 
 
 function Continue({ show, onContinue }) {
+    debugger;
     return (
         <div className="row continue">
             {show ? (
@@ -63,6 +65,7 @@ function Continue({ show, onContinue }) {
 
 
 const Footer = () => {
+    debugger;
     return (
         <div id="footer" className="row">
             <div className="col-12">

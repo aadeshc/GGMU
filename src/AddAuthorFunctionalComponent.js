@@ -1,36 +1,36 @@
 import React, { useReducer, useState } from 'react'
 import './AddAuthorForm.css'
 
-const AuthorFunction = (props) => {
-    const [state, setstate] = useState({ name: '', imageUrl: '', books: [], Booktemp: '' })
+const AuthorFunction = () => {
+    const [state, setstate] = useState({ Name: '', ImageUrl: '', Books: [], Booktemp: '' })
     const handleAddbook = (e) => {
 
         debugger;
 
-        setstate({ ...state, books: state.books.concat([state.Booktemp]) })
-
+        setstate({ ...state, Books: state.Books.concat([state.booktemp]) })
+        setstate({ ...state, Booktemp: '' })
 
 
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = (props) => {
         debugger;
 
-        props.onAddAuthor(state)
+        props.onAddAuthor(this.state)
     }
     return (
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit()}>
             <div className="AddAuthorForm__input">
                 <lable htmlFor="name"> Name</lable>
-                <input type="text" name="name" value={state.name} onChange={(e) => setstate({ ...state, name: e.target.value })}></input>
+                <input type="text" name="name" value={state.Name} onChange={(e) => setstate({ ...state, Name: e.target.value })}></input>
             </div>
             <div className="AddAuthorForm__input">
                 <lable htmlFor="image"> Image</lable>
-                <input type="text" name="image" value={state.image} onChange={(e) => setstate({ ...state, image: e.target.value })}></input>
+                <input type="text" name="image" value={state.Image} onChange={(e) => setstate({ ...state, Image: e.target.value })}></input>
             </div>
 
             <div className="AddAuthorForm__input">
-                {state.books.map((book) => <p>{book}</p>)}
+                {state.Books.map((book) => <p>{book}</p>)}
             </div>
             <div className="AddAuthorForm__input">
                 <lable htmlFor="Book"> Book</lable>
