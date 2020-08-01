@@ -13,6 +13,7 @@ const Hero = () => {
 
 
 const Book = ({ title, onClick }) => {
+    debugger;
     return (
         <div className="answer" onClick={() => { onClick(title); }}>
             <h4>{title}</h4>
