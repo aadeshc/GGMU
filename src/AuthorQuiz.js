@@ -1,4 +1,5 @@
-import React from 'react'
+import UserContext from "./Context";
+import React, { useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 const Hero = () => {
     return (
@@ -82,7 +83,15 @@ const Footer = () => {
     );
 }
 
-const Authorquiz = ({ turnData, highlight, onAnswerSelected, onContinue }) => {
+const Authorquiz = ({ onAnswerSelected, onContinue }) => {
+    debugger;
+    var authors = useContext(UserContext);
+    var turnData = authors.turnData //from context
+    var highlight = authors.highlight // from context
+    useEffect(() => {
+        console.log(authors);
+    }, []);
+
     return (
         <div className="container-fluid">
             <Hero></Hero>

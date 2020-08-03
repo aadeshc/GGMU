@@ -8,6 +8,7 @@ import Author from './AuthorQuiz'
 import { shuffle, sample } from "underscore";
 import { BrowserRouter, Route, withRouter } from 'react-router-dom'
 import AddAuthorForm from './AddAuthorForm';
+import { UserProvider } from './Context'
 
 const authors = [
   {
@@ -79,7 +80,7 @@ function resetState() {
 function TopApp() {
   debugger;
   return (
-    <Author {...state} onAnswerSelected={onAnswerSelected} onContinue={() => {
+    <Author onAnswerSelected={onAnswerSelected} onContinue={() => {
       state = resetState();
       render();
 
@@ -105,8 +106,10 @@ function render() {
   ReactDOM.render(
     <BrowserRouter>
       <React.Fragment>
-        <Route exact path="/" component={TopApp}></Route>
-        <Route exact path="/Add" component={AuthorWrapper}></Route>
+        <UserProvider value={state}>
+          <Route exact path="/" component={TopApp}></Route>
+          <Route exact path="/Add" component={AuthorWrapper}></Route>
+        </UserProvider>
       </React.Fragment>
     </BrowserRouter>,
     document.getElementById('root')

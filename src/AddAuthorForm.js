@@ -4,6 +4,44 @@ import './AddAuthorForm.css'
 const AuthorFunction = (props) => {
     const [state, setstate] = useState({ name: '', imageUrl: '', books: [], Booktemp: '' })
 
+    const reducer = (state, action) => {
+        debugger;
+        switch (action.type) {
+            case "setName":
+                return {
+                    ...state,
+                    name: action.name,
+                };
+            case "setImage":
+                return {
+                    ...state,
+                    image: action.image,
+                };
+            case "setbook":
+                return {
+                    ...state,
+                    Booktemp: action.Booktemp,
+                };
+            case "setbookarray":
+                return {
+                    ...state,
+                    books: state.books.concat([state.Booktemp]),
+
+                };
+
+            default: {
+                return {
+                    ...state
+                }
+            }
+        }
+    }
+
+    const [reducerState, dispatch] = useReducer(reducer, state);
+
+
+
+
     const handleAddbook = (e) => {
 
         debugger;
@@ -23,20 +61,20 @@ const AuthorFunction = (props) => {
         <form onSubmit={handleSubmit}>
             <div className="AddAuthorForm__input">
                 <lable htmlFor="name"> Name</lable>
-                <input type="text" name="name" value={state.name} onChange={(e) => setstate({ ...state, name: e.target.value })}></input>
+                <input type="text" name="name" value={reducerState.name} onChange={(e) => dispatch({ type: "setName", name: e.target.value })}></input>
             </div>
             <div className="AddAuthorForm__input">
                 <lable htmlFor="image"> Image</lable>
-                <input type="text" name="image" value={state.image} onChange={(e) => setstate({ ...state, image: e.target.value })}></input>
+                <input type="text" name="image" value={reducerState.image} onChange={(e) => dispatch({ type: "setImage", name: e.target.value })}></input>
             </div>
 
             <div className="AddAuthorForm__input">
-                {state.books.map((book) => <p>{book}</p>)}
+                {reducerState.books.map((book) => <p>{book}</p>)}
             </div>
             <div className="AddAuthorForm__input">
                 <lable htmlFor="Book"> Book</lable>
-                <input type="text" name="booktemp" value={state.Booktemp} onChange={(e) => setstate({ ...state, Booktemp: e.target.value })}></input>
-                <input type="button" value="+" onClick={handleAddbook}></input>
+                <input type="text" name="booktemp" value={reducerState.Booktemp} onChange={(e) => dispatch({ type: "setbook", Booktemp: e.target.value })}></input>
+                <input type="button" value="+" onClick={() => { dispatch({ type: "setbookarray" }) }}></input>
             </div>
             <div className="AddAuthorForm__input">
                 <input type="submit" value="submit"></input>
